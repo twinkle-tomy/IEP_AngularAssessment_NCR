@@ -1,0 +1,134 @@
+<div class="mainDiv">
+  <div class="truncate-text" [title]="selectedContractNames">
+        {{ selectedContractNames }}
+  </div>
+  <div class="reassign-alert" *ngIf="hasReassignRequests && !isEnlarged">
+      <div class="alert-text">
+        <span class="material-symbols-outlined">notification_important</span>
+        You have received <span style="font-weight: bold;">3 primary resource re-assignment requests</span>
+        <span class="viewRequest">View requests</span>
+      </div>
+      <button class="requestClose-btn" (click)="hasReassignRequests = false">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+  </div>
+  
+  <div class="filtersFirstDiv">
+    <div class="filter-header-left-text">Filter Activities</div>
+    <div class="filter-header-right-icons">
+      <div class="clear-filter-text" (click)="clearAllFilters()">
+                Clear Filter
+      </div>
+      <span #threeDotIconRef class="material-symbols-outlined more-icon" [ngClass]="{ 'active': isThreeDotClick }"
+        (click)="toggleThreeDot();customPopup.togglePopup()">more_horiz</span>
+      <span class="material-symbols-outlined" *ngIf="isFilterDivVisible == true"
+        (click)="ToggleFilterComponent()">keyboard_arrow_down</span>
+      <span class="material-symbols-outlined" *ngIf="isFilterDivVisible == false"
+        (click)="ToggleFilterComponent()">keyboard_arrow_up</span>
+    </div>
+  </div>
+  <div class="filtersSecDiv" *ngIf="isFilterDivVisible == true">
+    <div class="dropdownItem-row">
+      <label class="dropdownLabel">View As</label>
+        <kendo-dropdownlist
+          class="custom-dropdown"
+          [data]="viewAsDropdownList"
+          [(ngModel)]="selectedViewAs"
+          (valueChange)="onViewAsSelectionChange($event)"
+          [valuePrimitive]="true"
+          [textField]="'text'"
+          [valueField]="'value'"
+          [popupSettings]="{ popupClass: 'custom-kendo-popup' }">
+        </kendo-dropdownlist>
+    </div>
+    <div class="dropdownItem-row">
+      <label class="dropdownLabel">Type</label>
+        <kendo-dropdownlist
+          class="custom-dropdown"
+          [data]="viewTypeDropdownList"
+          [(ngModel)]="selectedViewType"
+          (valueChange)="onViewTypeSelectionChange($event)"
+          [valuePrimitive]="true"
+          [textField]="'text'"
+          [valueField]="'value'"
+          [popupSettings]="{ popupClass: 'custom-kendo-popup' }">
+        </kendo-dropdownlist>
+    </div>
+  </div>
+
+  <!-- Chart Or Tabular View -->
+    <div class="content-container">
+      <div *ngIf="isLoading && !isNoDataFound" class="full-centered" style="padding-top: 20px;">
+        <div class="spinner"></div>
+      </div>
+    
+      <div *ngIf="!isLoading && !isNoDataFound" class="chartTabDiv">
+        <app-custom-tabular style="width: 100%;height: 100%;" *ngIf="selectedViewAs === 'Tabular' && !isChartClickTabular"
+         [columns]="tabularColumns" [rows]="tabularData" [tabCount]="tabularLength"
+          [isViewExpanded]="isFullGridView"
+          [tabularTitle]="tabularHeader"
+          (ResizeScreen)="ExpandOrCollapseView($event)">
+        </app-custom-tabular>
+        <app-custom-chart style="width: 100%;"
+         *ngIf="selectedViewAs === 'Chart' && !isChartClickTabular" [categories]="chartCategories" [seriesData]="chartValues"
+          [seriesType]="chartSeriesType" [seriesColor]="chartSeriesColor" [isViewExpanded]="isFullChartView"
+          [yAxisTitleText]="chartYAxisTitle"
+          [chartTitle]="chartTitle"
+          (ResizeScreen)="ExpandOrCollapseView($event)"
+          (ShowHideTabular)="ShowHideChartInTabular($event)"
+          [style.max-height.px]="chartMaximumHeight">
+        </app-custom-chart>
+        <app-custom-tabular style="width: 100%;" *ngIf="selectedViewAs === 'Chart' && isChartClickTabular"
+         [columns]="tabularColumns" [rows]="tabularData" [tabCount]="tabularLength"
+          [isViewExpanded]="isFullGridView"
+          [isCloseAvail]="isTabCloseAvail"
+          [tabularTitle]="tabularHeader"
+          (ResizeScreen)="ExpandOrCollapseView($event)"
+          (ShowHideTabular)="ShowHideChartInTabular($event)">
+        </app-custom-tabular>
+      </div>
+      <div *ngIf="!isLoading && isNoDataFound" class="full-centered" style="padding-top: 20px;">
+        <div class="no-data">No Data Found!!!</div>
+      </div>
+    </div>
+
+  <!-- Reusable Popup -->
+<app-custom-popup
+  [items]="popupItems"
+  [popupAnchor]="threeDotIconRef"
+  (itemSelected)="onPopupItemSelected($event)"
+  (closed)="onPopupClosed()"
+  #customPopup></app-custom-popup>
+
+  <!-- Help Info Dialogue -->
+<kendo-dialog *ngIf="helpInfoVisible" (close)="onHelpInfoDialogClose()" class="helpDialog-wrapper">
+    <kendo-dialog-titlebar style="background-color:rgb(211, 236, 245);">
+        <div style="display: flex; color: black; font-size: 10px;align-items: center;">
+            <span class="material-symbols-outlined" style="color: rgb(6, 138, 190);font-size: 16px;">
+                info
+            </span><span style="margin-left: 3px; font-size: 12px;">Help Info</span>
+        </div>
+
+    </kendo-dialog-titlebar>
+    <div style="display: block;">
+    <label style="font-size: 15px; font-weight: bold;color: rgb(6, 138, 190);">Filter Non-Conformance Report</label>
+    
+    <div style="font-size: 12px; font-weight: bold;color: black; margin-top: 10px;">What is it?</div>
+
+    <p style="font-size: 11px; font-weight: bold;color: gray; margin-top: 5px;">In quality management, NCR stands for Non-Conformance Report. It's a document used to formally record and address any deviations or defects found in a product, service, or process that do not meet established quality standards or requirements.</p>
+
+    <div style="background-color: antiquewhite; border: 2px solid burlywood;margin-top: 10px;">
+
+    <label style="font-size: 12px; font-weight: bold;color: black; margin-top: 5px; margin-left: 2px;">Instructions to Use</label>
+
+    <p style="font-size: 11px; font-weight: bold;color: gray; margin-top: 5px;margin-left: 2px;">
+      Identifying the non-conformance<br><br>
+      Documenting it in the NCR<br><br>
+      Investigating the root cause<br><br>
+      Implementing corrective actions<br><br>
+      Verifying the effectiveness of those actions.
+    </p>
+    </div>
+    </div>
+</kendo-dialog>
+</div>

@@ -1,0 +1,23 @@
+ {
+  "data": {
+    "ncrColumns":[
+        "NCR NUMBER",
+        "PART NO",
+        "PART ID",
+        "PRODUCT DESCRIPTION",
+        "NC AREA",
+        "IMPUTATION CODE",
+        "CAUSE CODE",
+        "CREATED USER DATE",
+        "OPN DYS",
+        "WORKING COSTING PROJECT",
+        "DEVIATION NUMBER",
+        "NCR STATUS",
+        "YEAR",
+        "MONTH",
+        "LAST WEEK UPDATE",
+        "WEEK OPEN",
+        "NCR TYPE"
+    ]
+  }
+}

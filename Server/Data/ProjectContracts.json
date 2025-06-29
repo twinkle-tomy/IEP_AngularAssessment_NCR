@@ -1,0 +1,107 @@
+{
+  "data": {
+    "projects":[
+        {
+        "projectId": "9b97c9b3-6006-71b3-2f8a-cdd237105db5",
+        "contractName": "1608614-Supply contract for the supply of JUPITER-MODEL1 PHASE COMPONENTS dated 05-12-2014",
+        "user":"twinkle.tomy@baker-hughes.com",
+        "trains": [
+          {
+            "trainId": "93d106ca-42e0-3d33-e4f4-52eb54fae3ac",
+            "trainName": "5849380-Eng study",
+            "childJobs": ["1608601", "2BCL 1000"
+            ]
+          },
+          {
+            "trainId": "1a2af551-dc1d-b043-b01d-1b8aa590f7a4",
+            "trainName": "HMI ph2 virtualization 2769902",
+            "childJobs": ["1608613","2BCL 300"
+            ]
+          },
+          {
+            "trainId": "46a34741-d7e2-d63f-1f34-45c3476f1a24",
+            "trainName": "GTA D4",
+            "childJobs": ["1608596","8844450"
+            ]
+          },
+          {
+            "trainId": "75dbc3f9-124b-c7be-c232-19b75c96b333",
+            "trainName": "5844950-Longford - HMI (GEV)",
+            "childJobs": ["1608606","1707498"
+            ]
+          },
+          {
+            "trainId": "49ed70b8-b600-2949-b5d1-d02f8942882d",
+            "trainName": "Notification",
+            "childJobs": [ "1807505",
+                "1608602","255/A"
+            ]
+          }
+        ]
+        },
+        {
+        "projectId": "17bcafd3-204a-5e0a-1e02-b350863eca83",
+        "contractName": "1105538-BARRACUDA Main Gas Train 1",
+        "user":"twinkle.tomy@baker-hughes.com",
+        "trains": [
+          {
+            "trainId": "188d221b-7294-a17d-9966-552664820c2a",
+            "trainName": "Thommir1",
+            "childJobs": ["1707507", "878/N"
+            ]
+          },
+          {
+            "trainId": "ff83e4ad-91e4-7435-5351-594f0f1687b9",
+            "trainName": "Sanity",
+            "childJobs": ["1105539","1707503"
+            ]
+          }
+        ]
+        },
+        {
+        "projectId": "143abe2c-9e8f-4738-a26d-255c020dc185",
+        "contractName": "0315695-HEG Hybrid Electric Gear",
+        "user":"satheesh.babu@baker-hughes.com",
+        "trains": [
+          {
+            "trainId": "e58c494d-c106-0075-bd44-891cedc5e615",
+            "trainName": "Gorgon train",
+            "childJobs": ["2BCL 300", "5842374"
+            ]
+          },
+          {
+            "trainId": "33db93ab-31a2-47d3-0062-e9119e52bfa3",
+            "trainName": "Saudi Arabia",
+            "childJobs": ["1003497","mmNames_2BCL 30"
+            ]
+          }
+        ]
+        },
+        {
+        "projectId": "6fa72b83-e85b-0757-feba-1292ad33a997",
+        "contractName": "1707501-Frontier Datacenter",
+        "user":"atilio.clare@baker-hughes.com",
+        "trains": [
+          {
+            "trainId": "004ed56c-3a15-2a46-09f5-27efe267b77c",
+            "trainName": "EquipSerialNumber-United States",
+            "childJobs": ["1707508", "1707516"
+            ]
+          },
+          {
+            "trainId": "412be6ee-4ddc-1f51-7034-7856e41165b3",
+            "trainName": "Upgrade of the seal gas",
+            "childJobs": ["5842365","5842367"
+            ]
+          },
+          {
+            "trainId": "47705dc1-e8d2-5264-745b-74cdf121b58a",
+            "trainName": "VALVOLE CILINDRO",
+            "childJobs": ["9000151","0500040"
+            ]
+          }
+        ]
+        }
+    ]
+  }
+}

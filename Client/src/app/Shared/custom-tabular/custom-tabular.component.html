@@ -1,0 +1,68 @@
+<div class="tabHeaderDiv">
+    <div class="filter-header-left-text">
+        <span style="font-weight: 700;font-size: 13;">{{tabularTitle}}</span>
+        <span style="margin-left: 10px; color: gray; font-weight: 500;">Result : {{ tabCount }} Activities</span>
+    </div>
+    <div class="filter-header-right-icons">
+        <div class="search-container">
+            <input type="text" [(ngModel)]="searchText" (input)="ApplySearch()"
+                    placeholder="Search in all columns" />
+            <span class="material-symbols-outlined search-icon">search</span>
+        </div>
+<button type="button" title="Export to Excel"
+ style="background: none; border: none; cursor: pointer; margin-top: 2px;" 
+ (click)="excelExport.save()">
+  <svg width="17" height="17" viewBox="0 0 24 24">
+    <path d="M3 3 H17 L21 7 V21 H3 V3 Z" fill="white" stroke="#5C5C5C" stroke-width="1"/>
+    <path d="M17 3 L21 7 H17 V3 Z" fill="white" stroke="#5C5C5C" stroke-width="1"/>
+    <text x="12" y="16" font-size="12" font-family="Arial" font-weight="bold" text-anchor="middle" fill="#5C5C5C">X</text>
+  </svg>
+</button>
+    <span class="material-symbols-outlined" *ngIf="isViewExpanded == false" (click)="ExpandOrCollapse()" title="Expand">fullscreen</span>
+    <span class="material-symbols-outlined" *ngIf="isViewExpanded == true" (click)="ExpandOrCollapse()" title="Collapse">fullscreen_exit</span>
+    <span class="material-symbols-outlined" title="Settings">settings</span>
+    <span class="material-symbols-outlined" *ngIf="isCloseAvail==true" (click)="CloseTabular()" title="Close">close</span>
+</div>
+</div>
+
+<div class="tabDisplayDiv">
+    <kendo-grid #grid [data]="pagedRows"
+    [pageable]="{ info: false }"
+    [pageSize]="pageSize" [skip]="skip "
+    (pageChange)="onPageChange($event)"
+    [style.max-height.px]="tabMaximumHeight"
+    [style.max-width.px]="tabMaximumWidth">
+        <kendo-grid-column *ngFor="let col of columns"
+         [field]="col" [title]="col" [width]="150">
+            <ng-template kendoGridHeaderTemplate>
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <span class="material-symbols-outlined" style="font-size: 16px; color:gray;">drag_indicator</span>
+                    <span style="padding-left: 5px;">{{ col }}</span>
+                    <span #threeDotIconRef class="material-symbols-outlined"
+                        style="font-size: 16px; cursor: pointer; color:gray;padding-left: 15px;"
+                        (click)="openFilter(col,threeDotIconRef);">more_vert</span>
+                </div>
+                </ng-template>
+  </kendo-grid-column>
+    </kendo-grid>
+</div>
+
+<!-- global excel like filter popup -->
+<app-excel-like-filter-popup 
+    #filterPopup 
+    [popupAnchor]="popupAnchor"
+    [rows]="rows"
+    [activeFilters]="activeFilters"
+    (filterApplied)="onExcelLikeFilterChange()">
+</app-excel-like-filter-popup>
+
+<kendo-excelexport
+      [data]="rows"
+      [collapsible]="true"
+      fileName="NCR_Activities.xlsx"
+      #excelExport>
+        <kendo-excelexport-column 
+  *ngFor="let col of columns" [field]="col" [title]="col"></kendo-excelexport-column>
+</kendo-excelexport>
+
+

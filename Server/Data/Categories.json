@@ -1,0 +1,27 @@
+[
+    {
+        "id": 1,
+        "category": "World",
+        "total_news": 150
+    },
+    {
+        "id": 2,
+        "category": "Politics",
+        "total_news": 120
+    },
+    {
+        "id": 3,
+        "category": "Business",
+        "total_news": 100
+    },
+    {
+        "id": 4,
+        "category": "Technology",
+        "total_news": 80
+    },
+    {
+        "id": 5,
+        "category": "Sports",
+        "total_news": 90
+    }
+]

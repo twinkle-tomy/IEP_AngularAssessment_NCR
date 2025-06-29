@@ -1,0 +1,68 @@
+{
+  "data": {
+    "filterItems": [
+      {
+        "filterName": "BUSINESS TIER 1",
+        "propertyName": "businessTier1"
+      },
+      {
+        "filterName": "DELIVERY DATE",
+        "propertyName": "Delivery_Date"
+      },
+      {
+        "filterName": "PROJECT NAME",
+        "propertyName": "Project_Name"
+      },
+      {
+        "filterName": "PROJECT TYPE",
+        "propertyName": "Project_Type"
+      },
+      {
+        "filterName": "END USER",
+        "propertyName": "endUserAccountName"
+      },
+      {
+        "filterName": "CATEGORY",
+        "propertyName": "Category"
+      }
+    ],
+    "businessTier1": [ "New Units","PVS - Upgrades","Thermodyn"],
+    "Project_Name": ["Oil & Gas","Turbomachinery & Process Solutions", "CHEmics & Machinry"],
+    "endUserAccountName": ["Adriana Cabal","Daniel Loero","Jerry Bradley"],
+    "Project_Type": ["Active","Planned", "Inactive"],
+    "Delivery_Date": ["12/21/2017", "08/06/2018", "05/10/2019"],
+    "Category": ["KORE ENERGY LTD", "LG CHEM", "MARATHON OIL"],
+    "jobFullList": [
+      {
+        "jobId": "9b97c9b3-6006-71b3-2f8a-cdd237105db5",
+        "jobNumber": "On & Offshore Production",
+        "businessTier1": "New Units",
+        "endUserAccountName": "Adriana Cabal",
+        "Project_Name": "Oil & Gas",
+        "Project_Type": "Active",
+        "Delivery_Date": "12/21/2017",
+        "Category": "KORE ENERGY LTD"
+      },
+      {
+        "jobId": "143abe2c-9e8f-4738-a26d-255c020dc185",
+        "jobNumber": "T1bFG65BL",
+        "businessTier1": "PVS - Upgrades",
+        "endUserAccountName": "Daniel Loero",
+        "Project_Name": "Turbomachinery & Process Solutions",
+        "Project_Type": "Planned",
+        "Delivery_Date": "05/10/2019",
+        "Category": "LG CHEM"
+      },
+      {
+        "jobId": "6fa72b83-e85b-0757-feba-1292ad33a997",
+        "jobNumber": "MK123RTY",
+        "businessTier1": "Thermodyn",
+        "endUserAccountName": "Jerry Bradley",
+        "Project_Name": "CHEmics & Machinry",
+        "Project_Type": "Inactive",
+        "Delivery_Date": "08/06/2018",
+        "Category": "MARATHON OIL"
+      }
+    ]
+  }
+}

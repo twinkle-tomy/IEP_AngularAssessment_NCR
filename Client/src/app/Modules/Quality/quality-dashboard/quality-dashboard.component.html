@@ -1,0 +1,96 @@
+<div class="mainDiv">
+    <div class="firstDiv">
+        <div class="header-left-text">Quality</div>
+        <div class="header-right-icons">
+            <a href="https://www.google.com/" target="_blank" rel="noopener noreferrer">
+                 <img class="kaizenImageStyle" src="../../../../assets/Kaizen-btn 1.png" alt="Kaizen Button">
+            </a>
+            <span style="color: rgb(99, 98, 98);font-size: 12px;">Last Uploaded: </span>
+            <span class="date-text" style="color: #02A783;font-weight: bold; font-size: 10px;">{{ todayDate | date: 'dd MMM YYYY'
+                }}</span>
+            <div class="verticalBar"></div>
+            <span style="color: rgb(56, 63, 70);font-size: 12px;">YTD</span>
+            <div class="percentage-circle">
+                <div class="circle" [style.--percentage]="percentage">
+                    <span class="value">{{ percentage }}%</span>
+                </div>
+            </div>
+            <button class="doVsBuyBtn">Do Vs Buy</button>
+        </div>
+    </div>
+    <div class="secondDiv">
+    <kendo-tabstrip>
+        <kendo-tabstrip-tab title="NCR" [selected]="true">
+            <ng-template kendoTabContent>
+               <app-ncr></app-ncr>
+            </ng-template>
+        </kendo-tabstrip-tab>
+        
+        <kendo-tabstrip-tab title="NCM">
+            <ng-template kendoTabContent>
+                <p>This is the NCM tab content.</p>
+            </ng-template>
+        </kendo-tabstrip-tab>
+        
+        <kendo-tabstrip-tab title="ECN">
+            <ng-template kendoTabContent>
+                <p>This is the ECN tab content.</p>
+            </ng-template>
+        </kendo-tabstrip-tab>
+        
+        <kendo-tabstrip-tab title="ECR">
+            <ng-template kendoTabContent>
+                <p>This is the ECR tab content.</p>
+            </ng-template>
+        </kendo-tabstrip-tab>
+        
+        <kendo-tabstrip-tab title="NCM">
+            <ng-template kendoTabContent>
+                <p>This is the NCM tab content.</p>
+            </ng-template>
+        </kendo-tabstrip-tab>
+        
+        <kendo-tabstrip-tab title="COQ">
+            <ng-template kendoTabContent>
+                <p>This is the COQ tab content.</p>
+            </ng-template>
+        </kendo-tabstrip-tab>
+        
+        <kendo-tabstrip-tab title="CCM">
+            <ng-template kendoTabContent>
+                <p>This is the CCM tab content.</p>
+            </ng-template>
+        </kendo-tabstrip-tab>
+        
+        <kendo-tabstrip-tab title="OTRDR">
+            <ng-template kendoTabContent>
+                <p>This is the OTRDR tab content.</p>
+            </ng-template>
+        </kendo-tabstrip-tab>
+        
+        <kendo-tabstrip-tab title="FMEA">
+            <ng-template kendoTabContent>
+                <p>This is the FMEA tab content.</p>
+            </ng-template>
+        </kendo-tabstrip-tab>
+        
+        <kendo-tabstrip-tab title="RCA-NCA-CAPA">
+            <ng-template kendoTabContent>
+                <p>This is the RCA-NCA-CAPA tab content.</p>
+            </ng-template>
+        </kendo-tabstrip-tab>
+        
+        <kendo-tabstrip-tab title="Product Quality">
+            <ng-template kendoTabContent>
+                <p>This is the Product Quality tab content.</p>
+            </ng-template>
+        </kendo-tabstrip-tab>
+        
+        <kendo-tabstrip-tab title="Product Safety">
+            <ng-template kendoTabContent>
+                <p>This is the Product Safety tab content.</p>
+            </ng-template>
+        </kendo-tabstrip-tab>        
+        </kendo-tabstrip>
+    </div>
+</div>

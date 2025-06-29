@@ -1,0 +1,143 @@
+.mainDiv
+{
+    height: 100%;
+    align-items: center; 
+    justify-content: space-between;
+    color: black;
+    background-color: #F8FAF9;    
+}
+
+.firstDiv
+{
+    height: 8vh;
+    width: 100%;
+    display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.secondDiv
+{
+    height: calc(100vh - 8vh); // take remaining height
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-left-text {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  padding-left: 15px;
+}
+
+.header-right-icons {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding-right: 15px;
+}
+
+.kaizenImageStyle
+{
+    width: 80px;
+    height: 30px;
+    cursor: pointer;
+    padding-right: 5px;
+    padding-top: 4px;
+}
+
+  .verticalBar {
+    margin-left: 5px;
+    margin-right: 5px;
+    border-left: 1px solid darkgray; 
+    height: 19px;
+    display: inline-block; 
+  }
+
+  .percentage-circle {
+  .circle {
+    --percentage: 75;
+    width: 30px;
+    height: 30px;
+    border-radius: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: conic-gradient(#02a783 calc(var(--percentage) * 1%), #c7c7c7 0); 
+    position: relative;
+    padding: 3px; // keep or adjust if needed
+ 
+    &::before {
+      content: '';
+      position: absolute;
+      width: 30px;    
+      height: 30px;   
+      border-radius: 60%;
+      background-color: whitesmoke;
+      z-index: 1;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+ 
+    .value {
+      position: relative;
+      z-index: 2;
+      font-size: 10px;
+      color: #000;
+      font-weight: 500;
+    }
+  }
+}
+
+  .doVsBuyBtn
+  {
+    background-color: #02A783;
+    border: 1px solid #02A783;
+    border-radius: 5px;
+    height: 30px;
+    width: 70px;
+    margin-left: 10px;
+    color: white;
+    font-size: 11px;
+  }
+
+  /* Apply a default gray bottom border to all tab items */
+::ng-deep .k-tabstrip-items-wrapper {
+  border-bottom: 2px solid #DDE3E1;
+}
+ 
+/* Remove default borders and shadow for clean look */
+::ng-deep .k-tabstrip-items-wrapper .k-item {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #6C6C6C;
+  font-size: 12px !important;
+}
+ 
+/* ✅ Style selected tab only */
+::ng-deep .k-tabstrip-items-wrapper .k-item.k-active,
+::ng-deep .k-tabstrip-items-wrapper .k-item.k-selected
+::ng-deep .k-tabstrip-items-wrapper .k-item-focus {
+  color: black !important;
+}
+ 
+ 
+/* Add green bottom border only for selected/active tab */
+::ng-deep .k-tabstrip-items-wrapper .k-item.k-active::after,
+::ng-deep .k-tabstrip-items-wrapper .k-item.k-selected::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0px; /* aligns with wrapper's border */
+  height: 2px;
+  width: 100%;
+  background-color: #02A783;
+}
+
+::ng-deep .k-tabstrip-content {
+    background-color: #F8FAF9;
+    border: none;    
+}

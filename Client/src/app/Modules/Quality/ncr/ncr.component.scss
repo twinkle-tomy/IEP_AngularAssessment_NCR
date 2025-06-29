@@ -1,0 +1,256 @@
+.mainDiv
+{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  color: black;    
+}
+
+.truncate-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  max-width: 800px;   /* Adjust to your layout */
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.reassign-alert {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #FCF5C1;
+  border: 1.5px solid #F2B26A;
+  border-radius: 3px;
+  padding-left: 7px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 30px;
+ 
+  .alert-text {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 11px;
+ 
+    .material-symbols-outlined {
+      font-size: 16px;
+      color: #ec993a;
+    }
+
+    .viewRequest
+    {
+      color: #BF0E21;
+      cursor: pointer;
+      font-weight: 600;
+    }
+ 
+    strong {
+      color: black;
+    }
+ 
+    a {
+      color: #856404;
+      margin-left: 0.5rem;
+    }
+  }
+ 
+  .requestClose-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 5px;
+    
+ 
+    .material-symbols-outlined {
+      font-size: 12px;
+      color: black;
+      font-weight: bold;
+    }
+  }
+}
+
+.filtersFirstDiv
+{
+  height: 35px; 
+  background-color: white;
+  color: black;
+  align-items: center;
+  border: 1px solid lightgray;
+  border-top-left-radius: 3px;  /* Adjust value as needed */
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  width: 100%;
+  margin-top: 3px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.filter-header-left-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: #333;
+  padding-left: 8px;
+  padding-top: 2px;
+  align-items: center;
+  font-weight: 700;
+}
+
+.filter-header-right-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-right: 10px;
+
+  .material-symbols-outlined
+  {
+    font-size: 18px;
+    color: #5C5C5C;
+    cursor: pointer;
+  }
+}
+
+.more-icon {
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease-in-out;
+
+  &.active {
+    background-color: #e0e0e0; // or any gray shade
+  }
+}
+
+.filtersSecDiv
+{
+  height: 75px;
+  border-top-left-radius: 0;  /* Adjust value as needed */
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-left: 1px solid lightgray;
+  border-right: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: white;
+}
+
+.clear-filter-text {
+  color: rgb(3, 204, 184);    
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.dropdownItem-row {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 10px;
+}
+
+.dropdownLabel {
+  font-size: 12px;
+  margin-bottom: 3px;
+}
+
+.custom-dropdown
+{
+ background-color: white;
+ font-size: 12px;
+ border: 1px solid rgb(209, 205, 205);
+}
+
+::ng-deep .custom-kendo-popup .k-list-item
+{
+   font-size: 12px;
+}
+
+::ng-deep .custom-kendo-popup .k-list-item:hover {
+  background-color: rgb(190, 222, 235) !important;
+  color: black !important;
+  border: 1px solid lightgray !important;
+}
+
+::ng-deep .custom-kendo-popup .k-selected {
+  background-color: #048367 !important;
+  color: white !important;
+}
+
+.helpDialog-wrapper
+{
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  width: 380px;height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; // ensure it's above other content
+  border-radius: 5px;
+  background-color: white;
+  color: black; 
+}
+
+::ng-deep .k-dialog-titlebar .k-dialog-titlebar-action {
+  color: red; /* Change color */
+  font-size: 15px; /* Increase/decrease size */
+}
+
+::ng-deep .k-dialog-titlebar .k-dialog-titlebar-action .k-icon {
+  font-size: 15px; /* Optional: Tweak the icon size */
+  color: red;
+}
+
+.content-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 100%;
+}
+ 
+.full-centered {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.chartTabDiv
+{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-grow: 1;
+  width: 100%;
+  margin-top: 5px;
+}
+ 
+.no-data {
+  text-align: center;
+  color: #999;
+  font-size: 16px;
+  font-style: italic;
+}
+
+.spinner {
+    text-align: center;
+  border: 5px solid #ccc;
+  border-top: 5px solid #048367;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

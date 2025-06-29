@@ -1,0 +1,128 @@
+.tabHeaderDiv
+{
+  height: 35px; 
+  background-color: white;
+  color: black;
+  align-items: center;
+  border: 1px solid lightgray;
+  border-top-left-radius: 3px;  /* Adjust value as needed */
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.filter-header-left-text {
+  font-size: 12px;
+  color: #333;
+  padding-left: 8px;
+  padding-top: 2px;
+  align-items: center;
+}
+
+.filter-header-right-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-right: 5px;
+
+  .material-symbols-outlined
+  {
+    font-size: 16px;
+    color: #5C5C5C;
+    cursor: pointer;
+  }
+}
+
+.tabDisplayDiv
+{
+  flex-grow: 1;
+  overflow: auto;
+  border: 1px solid lightgray;
+  border-top: none;
+  border-radius: 0 0 1px 1px;
+}
+
+::ng-deep kendo-grid .k-grid-header th.k-header {
+  background-color: #f5f5f5;; /* Gray background for headers */
+  border: 1px solid rgb(229, 236, 245);
+  font-weight: 500;
+  color: black;
+  font-size: 11px; 
+}
+
+::ng-deep .k-grid-header th.k-header {
+  height: 30px;
+  line-height: 10px;
+  vertical-align: middle;
+  white-space: normal;
+  word-break: break-word;
+}
+
+::ng-deep kendo-grid .k-grid-table tr,
+::ng-deep kendo-grid .k-grid-table td {
+  border: 1px solid rgb(229, 236, 245) !important;
+  background-color: white; /* Light gray background */
+  font-size: 11px; 
+    padding: 4px 8px;   // controls row height
+}
+
+::ng-deep kendo-grid .k-grid-content tr:hover {
+  background-color: #f0f8ff; /* Optional: highlight row on hover */
+}
+
+  .search-container {
+  position: relative;
+  max-width: 55%;
+  padding-right: 10px;
+
+  input {
+    width: 100%;
+    border-radius: 24px;
+    border: 2px solid #ccc;
+    font-size: 11px;
+    padding-left: 10px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    height: 20px;
+  }
+
+  .search-icon {
+  position: absolute;
+  right:0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px; 
+  color: #363636;
+  pointer-events: none;
+  }  
+
+}
+
+::ng-deep .k-grid .k-pager {
+  justify-content: flex-end !important;
+}
+
+::ng-deep .k-button-flat {
+  width: 25px;
+  height: 25px;
+  color: black !important;
+  cursor: pointer;
+}
+
+::ng-deep .k-pager .k-button {
+  background-color: rgb(228, 242, 247) !important;
+  border-color: gray !important;
+}
+
+::ng-deep .k-pager .k-button.k-selected {
+  border-color: rgb(240, 239, 239) !important;
+  background-color: whitesmoke;
+  color: black !important;
+}
+
+::ng-deep .k-pager {
+  background-color: transparent;
+}

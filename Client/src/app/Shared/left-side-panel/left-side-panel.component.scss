@@ -1,0 +1,48 @@
+.mainDiv
+{
+    height: 100%;
+    align-items: center; 
+    justify-content: space-between;
+    color: black;    
+}
+
+.firstDiv
+{
+    height: 8vh;
+    width: 100%;
+    border-bottom: 2px solid #E1E7E5;
+    text-align: center;
+    justify-content: space-between;
+    background-color: #F8FAF9;
+    cursor: pointer;
+}
+
+.secondDiv
+{
+    height: calc(100vh - 8vh); // take remaining height
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.materialIcon
+{
+    margin-top: 10px; color: #363636;font-size: 17px;
+}
+
+.icon-hover-circle {
+ width: 36px;                // 👈 Fixed width
+  height: 36px;               // 👈 Same as width for a circle
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  margin-top: 5px;
+
+  &:hover {
+    background-color: #C6F7E2; // ✅ Green background on hover
+  }
+}

@@ -1,0 +1,6 @@
+<kendo-popup *ngIf="show" [anchor]="popupAnchor" [popupClass]="'popup-wrapper'">
+    <div class="popup-item" *ngFor="let item of items" (click)="onItemClick(item)">
+        <span class="material-icons">{{ item.icon }}</span>
+        <span class="label">{{ item.label }}</span>
+    </div>
+</kendo-popup>

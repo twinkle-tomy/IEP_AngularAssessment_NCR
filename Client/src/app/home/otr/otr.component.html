@@ -1,0 +1,16 @@
+
+<div class="main-container">
+  <app-header class="header" [headerName]="title"></app-header>
+
+  <div class="content">
+    <div class="col firstColumn">
+      <app-left-side-panel></app-left-side-panel>
+    </div>
+    <div class="col secondColumn" *ngIf="isContractTreeVisible">
+      <app-project-contracts></app-project-contracts>
+    </div>
+    <div class="col thirdColumn">
+      <app-quality-dashboard></app-quality-dashboard>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<kendo-popup *ngIf="visible" [anchor]="popupAnchor" >
+ <div class="filter-popup" >
+  <input type="text" class="search-box" placeholder="Search..." [(ngModel)]="searchText" />
+
+  <div class="checkbox-list">
+    <label *ngFor="let item of filteredDistinctValues">
+      <input type="checkbox" [(ngModel)]="item.selected" (change)="onCheckboxChange()" />
+      <span class="item-text">{{ item.value }}</span>
+    </label>
+  </div>
+
+  <div class="popup-buttons">
+    <button (click)="clearFilter()">Clear</button>
+    <button [disabled]="!anySelected()" (click)="applyFilter()">Apply</button>
+  </div>
+</div>
+</kendo-popup>

@@ -1,0 +1,44 @@
+<div class="chartLabelDiv">
+    <div class="filter-header-left-text">{{chartTitle}}</div>
+    <div class="filter-header-right-icons">
+    <span class="material-symbols-outlined" *ngIf="isViewExpanded == false" (click)="ExpandOrCollapse()" title="Expand">fullscreen</span>
+    <span class="material-symbols-outlined"*ngIf="isViewExpanded == true" (click)="ExpandOrCollapse()" title="Collapse">fullscreen_exit</span>
+    </div>
+</div>
+
+<div class="chartDisplayDiv">
+    <div class="y-axis-label">
+        {{yAxisTitleText}}
+    </div>
+    <div class="kendoChartDiv">
+        <kendo-chart style="margin-left: 3px;cursor: pointer;" (seriesClick)="onChartClick($event)">
+            <kendo-chart-category-axis>
+                <kendo-chart-category-axis-item [majorGridLines]="{ visible: false }">
+                    <kendo-chart-category-axis-item-labels>
+                    </kendo-chart-category-axis-item-labels>
+                </kendo-chart-category-axis-item>
+            </kendo-chart-category-axis>
+
+            <kendo-chart-series>
+                <kendo-chart-series-item [type]="seriesType" [data]="pagedCategoryArray" field="value"
+                    categoryField="category" [color]="seriesColor">
+                    <kendo-chart-series-item-tooltip [background]="'#ebebe0'" [color]="'#333'"
+                        [border]="{ color: '#999', width: 1 }">
+                        <ng-template kendoChartSeriesTooltipTemplate let-value="value" let-category="category">
+                            <div style="font-size: 13px; font-weight: 600; ">{{ replaceNewLines(category) }}</div>
+                            <div style="font-size: 11px;">Count : {{ value }}</div>
+                        </ng-template>
+                    </kendo-chart-series-item-tooltip>
+                </kendo-chart-series-item>
+            </kendo-chart-series>
+        </kendo-chart>
+
+        <div class="kendoPagerDiv">
+            <kendo-pager class="chart-toolbar" [pageSize]="pageSize" [skip]="currentPage" [total]="categories.length"
+                [attr.aria-controls]="contentId" [pageSizeValues]="pageSizes" [info]="info" [previousNext]="prevNext"
+                [type]="type" (pageChange)="onPageChange($event)">
+            </kendo-pager>
+        </div>
+    </div>
+</div>
+

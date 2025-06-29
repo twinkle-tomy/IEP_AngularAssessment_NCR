@@ -1,0 +1,106 @@
+
+.chartLabelDiv
+{
+  height: 35px; 
+  background-color: white;
+  color: black;
+  align-items: center;
+  border: 1px solid lightgray;
+  border-top-left-radius: 3px;  /* Adjust value as needed */
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.filter-header-left-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: #333;
+  padding-left: 8px;
+  padding-top: 2px;
+  align-items: center;
+  font-weight: 700;
+}
+
+.filter-header-right-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-right: 10px;
+
+  .material-symbols-outlined
+  {
+    font-size: 18px;
+    color: #5C5C5C;
+    cursor: pointer;
+  }
+}
+
+.chartDisplayDiv
+{
+  display: flex; 
+  flex-direction: row;
+  height: 100%;
+}
+
+.y-axis-label {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    background-color: white;
+    color: rgb(58, 57, 57);
+    font-size: 12px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.kendoChartDiv {
+flex: 1;
+display: flex;  
+flex-direction: column;
+background-color: white;
+}
+
+.kendoChartDiv kendo-chart {
+    flex: 1; /* chart fills remaining height */
+}
+
+.kendoPagerDiv {
+   height: 35px;
+  width: 100%;
+  display: flex;
+  padding-right: 8px;
+  padding-bottom: 8px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.chart-toolbar {
+  border: none;
+}
+
+::ng-deep .k-button-flat {
+  width: 25px;
+  height: 25px;
+  color: black !important;
+  cursor: pointer;
+}
+
+::ng-deep .k-pager .k-button {
+  background-color: rgb(228, 242, 247) !important;
+  border-color: gray !important;
+}
+
+::ng-deep .k-pager .k-button.k-selected {
+  border-color: rgb(240, 239, 239) !important;
+  background-color: whitesmoke;
+  color: black !important;
+}
+
+::ng-deep .k-pager {
+  background-color: transparent;
+}

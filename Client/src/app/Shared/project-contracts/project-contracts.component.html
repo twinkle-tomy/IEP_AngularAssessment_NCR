@@ -1,0 +1,154 @@
+<div class="mainDiv">
+    <div class="firstDiv">
+        <div class="header-left-text">Filter Contracts</div>
+        <div class="header-right-icons">
+            <span #threeDotIconRef class="material-symbols-outlined more-icon"
+             [ngClass]="{ 'active': isThreeDotClick }"
+             (click)="toggleThreeDot();customPopup.togglePopup()">more_horiz</span>
+            <span class="material-symbols-outlined" style="padding-right: 15px;" (click)="toggleComponent()">arrow_back</span>
+        </div>
+    </div>
+    <div class="secondDiv">
+        <div class="contract-buttons">
+            <button class="contract-tab" [class.active]="selectedTab === 'my'" (click)="SwitchContracts('my')">
+                My Contracts
+            </button>
+            <button class="contract-tab" [class.active]="selectedTab === 'all'" (click)="SwitchContracts('all')">
+                All Contracts
+            </button>
+            <button class="contract-tab" [class.active]="selectedTab === 'fav'" (click)="SwitchContracts('fav')">
+                Favourites
+            </button>
+        </div>
+        <div class="search-container">
+            <input type="text" [(ngModel)]="searchText" (input)="applyFilter()" placeholder="Search job number or contract name..." />
+            <span class="material-symbols-outlined search-icon">search</span>
+        </div>
+        <button class="advanceSearch-button" *ngIf="advanceSearchToggle==false" (click)="OnAdvanceSearchButtonClick()">
+           <span class="material-symbols-outlined rightDownArrowIcon">keyboard_arrow_right</span>
+                  &nbsp;&nbsp;Advanced Search
+        </button>
+        <button class="advanceSearch-button" *ngIf="advanceSearchToggle==true" (click)="OnAdvanceSearchButtonClick()">
+           <span class="material-symbols-outlined rightDownArrowIcon">keyboard_arrow_down</span>
+                  &nbsp;&nbsp;Advanced Search
+        </button>
+
+        <!-- Advance Filter Grid -->
+        <div *ngIf="advanceSearchToggle==true" class="filterWrapper">
+              <!-- Clear Filter link -->
+            <div class="clear-filter-text" (click)="clearAllFilters()">
+                Clear Filter
+            </div>
+            <div *ngFor="let item of advanceFilterItems; let i = index" class="filter-row" >
+                <label class="filter-label">{{ item.filterName }}</label>
+
+                <div class="filter-control">
+                    <!-- Display selected items comma-separated -->
+                    <div class="selected-values" title="{{ advanceSelectedValues[item.propertyName].join(', ') }}">
+                    {{ advanceSelectedValues[item.propertyName].join(', ') || '' }}
+                    </div>
+                    <span class="material-symbols-outlined icon minus" (click)="removeLastAddedFilter(item.propertyName)">remove</span>
+
+                     <div class="multiselect-wrapper">
+                        <!-- Custom Kendo Multiselect (hidden input, used only to select) -->
+                        <kendo-multiselect #multiSelect
+                        [data]="advanceFilterOptions[item.propertyName]"
+                        [(ngModel)]="advanceSelectedValues[item.propertyName]"
+                        [valuePrimitive]="true"
+                        [autoClose]="false"
+                        [popupSettings]="{ appendTo: 'component', popupClass: 'custom-multiselect-popup'  }"
+                        [tagMapper]="tagMapper"
+                        [allowCustom]="false"
+                        [checkboxes]="true"
+                        class="kendo-hidden"
+                        ></kendo-multiselect>                   
+                        <span class="material-symbols-outlined icon arrow"  (click)="toggleMultiSelectDropdown(item.propertyName, i); $event.stopPropagation();">expand_more</span>
+                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project Contracts Tree View -->        
+    <div style="margin-top: 13px;">
+        <div class="summary">
+                Result: {{ filteredProjects.length }} Contracts
+        </div>
+
+        <div  *ngIf="treeData && treeData.length > 0; else noDataTemplate">
+            <div class="selectAllContracts">
+                <input class="selectAllField" type="checkbox" [checked]="selectAllChecked" (change)="SelectAll($event)">
+                <label>Select All</label>
+            </div>
+
+            <div class="tree-container">
+                <kendo-treeview [nodes]="treeData"
+                kendoTreeViewExpandable 
+                kendoTreeViewCheckable
+                [checkedKeys]="checkedKeys"
+                [checkBy]="'id'"
+                [expandedKeys]="expandedKeys"
+                [expandBy]="'id'"
+                textField="text" 
+                [hasChildren]="hasChildren"
+                [children]="fetchChildren"
+                (checkedKeysChange)="onTreeViewCheckboxChange($event)">
+                    <ng-template kendoTreeViewNodeTemplate let-dataItem>
+                            <div class="tree-node">
+                                <span [title]="dataItem.text" class="truncate-text">{{ dataItem.text }}</span>
+                                <!-- Show star icon only for parent nodes -->
+                                <span *ngIf="dataItem.isParent" style="float: right;">
+                                    <span class="material-icons star-icon"
+                                    [class.favourite]="isFavourited(dataItem)"
+                                    (click)="toggleFavourite(dataItem)">
+                                        {{ isFavourited(dataItem) ? 'star' : 'star_border' }}
+                                    </span>
+                                </span>
+                            </div>
+                    </ng-template>
+                </kendo-treeview>
+            </div>
+        </div>         
+
+
+        <ng-template #noDataTemplate>
+            <div class="no-data-message">No Data Found!!!</div>
+        </ng-template>      
+
+    </div>
+    </div>
+
+    <!-- Reusable Popup -->
+<app-custom-popup
+  [items]="popupItems"
+  [popupAnchor]="threeDotIconRef"
+  (itemSelected)="onPopupItemSelected($event)"
+  (closed)="onPopupClosed()"
+  #customPopup></app-custom-popup>
+
+<!-- Help Info Dialogue -->
+<kendo-dialog *ngIf="helpInfoVisible" (close)="onHelpInfoDialogClose()" class="helpDialog-wrapper">
+    <kendo-dialog-titlebar style="background-color:rgb(211, 236, 245);">
+        <div style="display: flex; color: black; font-size: 10px;align-items: center;">
+            <span class="material-symbols-outlined" style="color: rgb(6, 138, 190);font-size: 16px;">
+                info
+            </span><span style="margin-left: 3px; font-size: 12px;">Help Info</span>
+        </div>
+
+    </kendo-dialog-titlebar>
+    <div style="display: block;">
+    <label style="font-size: 15px; font-weight: bold;color: rgb(6, 138, 190);">Filter Contracts</label>
+    
+    <div style="font-size: 12px; font-weight: bold;color: black; margin-top: 10px;">What is it?</div>
+
+    <p style="font-size: 11px; font-weight: bold;color: gray; margin-top: 5px;">ITO Info contains basic Oppty data from Deal Machine.</p>
+
+    <div style="background-color: antiquewhite; border: 2px solid burlywood;margin-top: 10px;">
+
+    <label style="font-size: 12px; font-weight: bold;color: black; margin-top: 5px; margin-left: 2px;">Instructions to Use</label>
+
+    <p style="font-size: 11px; font-weight: bold;color: gray; margin-top: 5px;margin-left: 2px;">Data are taken from Deal Machine.<br><br> Job numbers are refernce to which the train is linked. <br><br> It is possible to find and filter job numbers using Advance Search filter.</p>
+
+    </div>
+    </div>
+</kendo-dialog>
+</div>

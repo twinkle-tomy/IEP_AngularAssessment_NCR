@@ -1,0 +1,392 @@
+.mainDiv
+{
+    height: 100%;
+    align-items: center; 
+    justify-content: space-between;
+    color: black;    
+}
+
+.firstDiv
+{
+   height: 8vh;
+   width: 100%;
+   border-bottom: 2px solid #E1E7E5;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.secondDiv
+{
+    height: calc(100vh - 8vh); // take remaining height
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-left-text {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  padding-left: 15px;
+}
+
+.header-right-icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  .material-symbols-outlined {
+    cursor: pointer;
+    font-size: 18px;
+    color: #333;
+
+    &:hover {
+      color: #147D64; // green on hover
+    }
+  }
+}
+
+  .contract-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+    border: 1px solid #EBEFEE;
+    border-radius: 5px;
+    background-color: #EBEFEE;
+    margin: 8px;
+    font-weight: bold;
+    height: 35px;
+ 
+    .contract-tab {
+      font-size: 11px;
+      font-weight: bold;
+      color: grey;
+      background-color: none;
+      border: none;
+      margin-top: 5px;
+      margin-left: 3px;
+      margin-right: 3px;
+      cursor: pointer;
+      transition: background-color 0.2s, border-color 0.2s;
+      height: 25px;
+ 
+      &.active {
+        background-color: white;
+        border: 1px solid lightgray;
+        border-radius: 6px;
+        color: #333;
+      }
+ 
+      &:hover:not(.active) {
+        background-color: #d8e9e7;
+        border: none;
+      }
+    }
+  }
+
+  .search-container {
+  position: relative;
+  max-width: 88%;
+  margin-left: 10px;
+  margin-top: 17px;
+
+  input {
+    width: 100%;
+    border-radius: 24px;
+    border: 2px solid #ccc;
+    font-size: 12px;
+    padding-left: 10px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    height: 28px;
+  }
+
+  .search-icon {
+  position: absolute;
+  right:0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px; 
+  color: #363636;
+  pointer-events: none;
+  }
+
+}
+
+  .advanceSearch-button
+  {
+    background-color: #02A783;
+    border: 1px solid #02A783;
+    border-radius: 5px;
+    height: 30px;
+    width: 93%;
+    margin-left: 10px;
+    color: white;
+    font-size: 12px;
+    margin-left: 10px;
+    margin-top: 17px;
+    cursor: pointer;
+  }
+
+  .rightDownArrowIcon
+  {
+      font-size: 15px;
+      position: relative;
+      color: white;
+      top: 3px; /* ✅ Push it slightly lower */
+  }
+
+//    Advance Filter Grid
+.filterWrapper
+{
+  background-color: #F8FAF9;
+  margin: 8px;
+  border: 1 px solid #F8FAF9;
+  border-radius: 5px;
+  height: 150px; /* or whatever height you prefer */
+  overflow-y: auto;
+}
+
+/* Chrome/Webkit */
+.filterWrapper::-webkit-scrollbar {
+  width: 6px;
+}
+.filterWrapper::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 3px;
+}
+
+.clear-filter-text {
+  text-align: right;
+  color: rgb(3, 204, 184);           // Green color
+  font-size: 11px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+  .filter-row {
+  display: flex;
+  flex-direction: column; // 💡 Make children stack vertically
+  border-bottom: 1.5px solid lightgray;
+  padding: 6px 0;
+  width: 100%;
+
+}
+
+.filter-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 4px;
+    padding-left: 3px;
+}
+
+.filter-control {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.selected-values {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 11px;
+  color: grey;
+  padding-left: 3px;
+}
+
+.multiselect-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.kendo-hidden {
+    font-size: 8px;
+    width: 65px;
+    border: none;
+    background-color: #F8FAF9;    
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.icon {
+  cursor: pointer;
+  font-size: 16px;
+  color: #555;
+}
+
+.icon.arrow {
+  cursor: pointer;
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #555;
+}
+
+.icon.minus {
+  cursor: pointer;
+}
+
+::ng-deep kendo-multiselect .k-input,
+::ng-deep kendo-multiselect .k-list-item {
+  font-size: 12px; // ✅ Adjust this to your desired size
+}
+
+ ::ng-deep .k-checkbox:checked, .k-checkbox.k-checked 
+ {
+    border-color: #02A783 !important;
+    color: white !important;
+    background-color: #02A783 !important;
+}
+
+  ::ng-deep input[type=checkbox], input[type=radio] {
+    border: 1px solid gray !important;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+::ng-deep .custom-multiselect-popup {
+  max-height: 200px; /* Adjust to your need */
+  overflow-y: auto;
+  width: 235px !important; 
+}
+
+   ::ng-deep.k-input-md .k-input-inner, .k-picker-md .k-input-inner {
+    cursor: pointer;
+}
+
+// Project Contracts Styling
+
+.summary {
+  font-size: 12px;
+  margin-bottom: 8px;
+  padding-left: 10px;
+  color: gray;
+}
+
+ .selectAllContracts {
+  display: flex;
+  align-items: center;  // 🔥 aligns checkbox and label vertically
+  gap: 6px;             // spacing between checkbox and text
+  color: #353535;
+  font-size: 13px;
+  font-weight: 500;
+  margin-left: 6px;
+}
+
+.selectAllField {
+  width: 15.5px;
+  height: 15.5px;
+  accent-color: #02A783;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.tree-container {
+  // height: calc(100vh - 350px); /* leave space for taskbar/footer */
+  // overflow-y: auto;
+  padding-right: 4px;
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #ccc transparent;
+}
+
+.tree-node {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 12px;
+}
+
+.star-icon {
+  padding-top: 7px;
+  margin-left: 10px;
+  cursor: pointer;
+  color: gray;
+  font-size: 19px;
+  transition: color 0.3s;
+  user-select: none;
+
+  &.favourite {
+    color: #048367;
+  }
+
+  &:hover {
+    color: #048367;
+  }
+}
+
+.truncate-text {
+  font-size: 11px;
+  display: inline-block;
+  max-width: 180px;   /* Adjust to your layout */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.no-data-message {
+  margin-top: 26px;
+  padding: 16px;
+  color: #999;
+  text-align: center;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.more-icon {
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease-in-out;
+
+  &.active {
+    background-color: #e0e0e0; // or any gray shade
+  }
+}
+
+.helpDialog-wrapper
+{
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  width: 350px;height: 315px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; // ensure it's above other content
+  border-radius: 5px;
+  background-color: white;
+  color: black; 
+}
+
+::ng-deep .k-dialog-titlebar .k-dialog-titlebar-action {
+  color: red; /* Change color */
+  font-size: 15px; /* Increase/decrease size */
+}
+
+::ng-deep .k-dialog-titlebar .k-dialog-titlebar-action .k-icon {
+  font-size: 15px; /* Optional: Tweak the icon size */
+  color: red;
+}
+
+::ng-deep .kendoAction-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+::ng-deep .action-btn {
+  width: 80px;
+  min-width: unset; // removes default min-width if applied
+}
+ 
+ 

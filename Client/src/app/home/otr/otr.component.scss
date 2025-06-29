@@ -1,0 +1,38 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.header {
+  height: 8vh; // Fixed height for header
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  height: calc(100vh - 8vh); // take remaining height
+  overflow: hidden;
+}
+
+.col {
+  height: 100%;
+}
+
+.firstColumn {
+  width: 50px;
+  border-bottom: 2px solid #E1E7E5;
+  border-right: 2px solid #E1E7E5;
+}
+
+.secondColumn {
+  width: 300px;
+  border-bottom: 2px solid #E1E7E5;
+  border-right: 2px solid #E1E7E5;
+}
+
+.thirdColumn {
+  border-bottom: 2px solid #E1E7E5;
+  border-right: 2px solid #E1E7E5;
+  flex: 1;
+}

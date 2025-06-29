@@ -1,0 +1,102 @@
+.maindiv {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+}
+
+.maindivRow {
+    margin-top: 5%;
+    height: 60vh;
+}
+
+.formGroupiv {
+    margin-left: 100px;
+    margin-bottom: 100%;
+    width: 60%;
+    text-align: left;
+}
+
+.formGroupInput {
+    border-color: lightgray;
+    border-radius: 3px;
+    font-size: 12px;
+    color: #313131;
+}
+
+.formGroupInput:focus {
+  outline: none;
+}
+
+input::placeholder {
+    color: lightgray; /* Change the color */
+    font-size: 12px; /* Change the font size */
+ }
+
+.imageStyle {
+    height: 12%;
+    width: 30%;
+    margin-left: 34%
+}
+
+.titleheader {
+    margin-top: 5%;
+    font-size: 13px; /* Change the font size */
+    text-align: center;
+
+}
+
+.required-field
+{
+    font-size: 13px;
+    color: #575757;
+    font-weight: 400;
+}
+
+.required-field::after {
+    content: " *";
+    color: red;
+}
+
+.form-group input {
+    font-size: 12px;
+    width: 300px;
+    height: 30px;
+    box-shadow: none;
+    border: 1px solid lightgray;
+    margin-top: 2px;
+    margin-bottom: 15px;
+    color: #575757;
+}
+
+.formcheckinline {
+    justify-content: space-between;
+}
+
+.text-danger {
+    font-size: 12px;
+    color: red;
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+ .remember-me {
+  display: flex;
+  align-items: center;  // 🔥 aligns checkbox and label vertically
+  gap: 6px;             // spacing between checkbox and text
+  color: #575757;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.loginbttn {
+    border-radius: 5px;
+    justify-content: center;
+    line-height: 38px;
+    width: 300px;
+    background-color: #147D64;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    border-color: transparent;
+    cursor: pointer;
+}

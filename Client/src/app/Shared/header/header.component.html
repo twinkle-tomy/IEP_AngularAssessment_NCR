@@ -1,0 +1,70 @@
+<div class="mainDiv">
+ <div style="display: flex;"> <!-- Left aligned -->
+    <div class="horizontalBars">
+        <div class="bar"></div>
+        <div class="middlebar"></div>
+        <div class="bar"></div>
+    </div>
+    <img class="imageLogoDashboardStyle" src="../../../assets/Logo-Dashboard.png" alt="">
+    <div class="verticalBar"></div>
+    <div class="dashboard">{{headerName}}</div>
+  </div>
+
+  <div class="header-right" style="margin-right: 10px;" #dropdownRef>
+      <button class="my-custom-button">My Request</button>
+      <button class="my-custom-button">Support Ticket</button>
+      <span class="material-symbols-outlined icon">chat_bubble</span>
+      <span class="material-symbols-outlined icon">help</span>
+     <div class="icon-container">
+        <span class="material-symbols-outlined" style="font-size: 17px;">notifications</span>
+        <span class="notification-badge">1</span>
+      </div>
+      <div class="profile-wrapper" (click)="toggleDropdown()" >
+        <div class="profile-container">
+            <img src="../../../assets/Passport Foto_New.jpg" class="profile-image" />
+        </div>
+        <span class="profile-badge">+1</span>
+     </div>
+     
+        <!-- User Avatar click Drop Down Menu -->
+        <div class="dropdown-menu" *ngIf="dropdownOpen">
+            <div class="user-info">
+                <img src="../../../assets/Passport Foto_New.jpg" class="user-image" />
+                <div class="user-details">
+                    <div class="user-name">{{ userFullName()}}</div>
+                    <div class="user-email">{{ userEmail() }}</div>
+                </div>
+            </div>
+            <hr />
+            <div class="menu-item">
+                <span class="material-symbols-outlined icon-left">group</span>
+                <span class="menu-label">Change Dashboard</span>
+                <span class="material-symbols-outlined arrow-icon">arrow_forward_ios</span>
+            </div>
+            <div class="menu-subtext">Abinav, Evgeni, Francesco</div>
+            <hr />
+            <div class="menu-item logout" (click)="showLogoutConfirm()">
+                <span class="material-symbols-outlined" style="font-size: 15px;">power_settings_new</span>
+                <span style="font-weight: 500;">Log out</span>
+            </div>
+        </div>
+  </div>
+
+  <!-- Kendo Confirmation Dialog In Logout -->
+<kendo-dialog *ngIf="confirmVisible" (close)="onDialogClose($event)" style="border-radius: 5px;">
+  <kendo-dialog-titlebar>
+    Confirm Logout
+  </kendo-dialog-titlebar>
+
+  <p>Are you sure you want to logout?</p>
+
+  <kendo-dialog-actions>
+    <div class="kendoAction-wrapper">
+      <button class="action-btn" kendoButton (click)="onDialogClose('cancel')">No</button>
+      <button class="action-btn" kendoButton themeColor="primary" (click)="onDialogClose('confirm')">Yes</button>
+    </div>
+
+  </kendo-dialog-actions>
+</kendo-dialog>
+</div>
+
