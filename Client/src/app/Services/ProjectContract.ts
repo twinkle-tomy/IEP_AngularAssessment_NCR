@@ -26,3 +26,11 @@ export interface ContractTreeItem {
   favourite?: boolean;
   parentId:string;
 }
+
+export interface ContractExportDetail {
+  [key: string]: any;
+}
+
+export interface ContractExportColumns {
+  columnNames: string[];
+}

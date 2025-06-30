@@ -47,7 +47,9 @@
                     <div class="selected-values" title="{{ advanceSelectedValues[item.propertyName].join(', ') }}">
                     {{ advanceSelectedValues[item.propertyName].join(', ') || '' }}
                     </div>
-                    <span class="material-symbols-outlined icon minus" (click)="removeLastAddedFilter(item.propertyName)">remove</span>
+                    <span class="material-symbols-outlined icon minus"
+                        *ngIf="advanceSelectedValues[item.propertyName]?.length" 
+                        (click)="removeLastAddedFilter(item.propertyName)">remove</span>
 
                      <div class="multiselect-wrapper">
                         <!-- Custom Kendo Multiselect (hidden input, used only to select) -->
@@ -60,8 +62,7 @@
                         [tagMapper]="tagMapper"
                         [allowCustom]="false"
                         [checkboxes]="true"
-                        class="kendo-hidden"
-                        ></kendo-multiselect>                   
+                        class="kendo-hidden"></kendo-multiselect>                   
                         <span class="material-symbols-outlined icon arrow"  (click)="toggleMultiSelectDropdown(item.propertyName, i); $event.stopPropagation();">expand_more</span>
                      </div>
                 </div>
@@ -80,7 +81,7 @@
                 <label>Select All</label>
             </div>
 
-            <div class="tree-container">
+            <div class="tree-container" #projectTreeWrapper>
                 <kendo-treeview [nodes]="treeData"
                 kendoTreeViewExpandable 
                 kendoTreeViewCheckable
@@ -123,6 +124,8 @@
   [popupAnchor]="threeDotIconRef"
   (itemSelected)="onPopupItemSelected($event)"
   (closed)="onPopupClosed()"
+  [popupClass]="popupStyle"
+  [uploadedInfo]="uploadedFiles"
   #customPopup></app-custom-popup>
 
 <!-- Help Info Dialogue -->
@@ -151,4 +154,16 @@
     </div>
     </div>
 </kendo-dialog>
+
+<!-- Kendo Excel Export -->
+<kendo-excelexport
+  #excelExport
+  [data]="exportData"
+  [fileName]="'ProjectContracts.xlsx'">
+  <kendo-excelexport-column
+    *ngFor="let col of exportColumns"
+    [field]="col"
+    [title]="col">
+  </kendo-excelexport-column>
+</kendo-excelexport>
 </div>

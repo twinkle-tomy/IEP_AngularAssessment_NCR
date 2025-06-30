@@ -1,23 +1,24 @@
 import { CommonModule } from '@angular/common';
-import { Component, QueryList, ViewChildren} from '@angular/core';
+import { Component, ElementRef, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ProjectJobService } from '../../Services/project-job.service';
-import { AdvanceFilterItem } from '../../Services/AdvanceFilter';
+import { AdvanceFilterItem, PopupItem } from '../../Services/AdvanceFilter';
 import { KENDO_DROPDOWNS, MultiSelectComponent } from "@progress/kendo-angular-dropdowns";
 import { ItemToggleService } from '../../Services/item-toggle.service';
 import { KENDO_TREEVIEW } from '@progress/kendo-angular-treeview';
 import { LoginService } from '../../Services/login.service';
-import { ContractTreeItem, ProjectNode } from '../../Services/ProjectContract';
+import { ContractExportDetail, ContractTreeItem, ProjectNode } from '../../Services/ProjectContract';
 import { Observable, of } from 'rxjs';
 import { CustomPopupComponent } from '../custom-popup/custom-popup.component';
 import { DialogModule } from '@progress/kendo-angular-dialog';
+import { ExcelExportComponent, ExcelExportModule } from '@progress/kendo-angular-excel-export';
 
 @Component({
   selector: 'app-project-contracts',
   standalone: true,
   imports: [CommonModule, FormsModule, 
     KENDO_DROPDOWNS, KENDO_TREEVIEW,
-     CustomPopupComponent, DialogModule ],
+     CustomPopupComponent, DialogModule, ExcelExportModule],
   templateUrl: './project-contracts.component.html',
   styleUrl: './project-contracts.component.scss'
 })
@@ -27,6 +28,8 @@ export class ProjectContractsComponent {
   currentUserEmail:any;
   selectedTab: string = 'my'; // default selection
   searchText: string = '';
+  @ViewChild('projectTreeWrapper') projectTreeWrapper!: ElementRef<HTMLDivElement>;
+  @ViewChild('excelExport', { static: false }) excelExport!: ExcelExportComponent;
 
   // variables for Advance Search
   advanceSearchToggle : boolean = true;
@@ -39,6 +42,7 @@ export class ProjectContractsComponent {
   multiselectStates: { [propertyName: string]: boolean } = {};
 
   // variables for Project Contracts
+  excelExportDiv:boolean = false;
   selectAllChecked : boolean = false;
   allProjects: ProjectNode[] = [];
   treeData: ContractTreeItem[] = [];
@@ -53,14 +57,26 @@ export class ProjectContractsComponent {
   selectedContracts: any[] = [];
 
   // For CustomPopup
-  popupItems = [
+  popupItems: PopupItem[] = [
     { icon: 'grid_on', label: 'Export Contracts' },
     { icon: 'save', label: 'Save Filter' },
-    { icon: 'filter_list', label: 'Load Filter' },
     { icon: 'help', label: 'Instructions to Use' }
   ];
 
   isThreeDotClick = false;
+  savedFilters: { key: string, values: Record<string, string[]> }[] = [];
+  savedFilterCount = 0;
+  popupStyle = 'popup-wrapper open-right'; 
+  exportColumns: string[] = [];
+  exportData: ContractExportDetail[] = [];
+  uploadedFiles = [
+  { name: 'ITO - Train configuration & Opportunity Driver-Driven', date: '01-Jan-2025' },
+  { name: 'ITO Information', date: '01-Jan-2025' },
+  { name: 'Serial Number', date: '01-Jan-2025' },
+  { name: 'Industrial segment file', date: '01-Jan-2025' },
+  { name: 'P6-project creation file', date: '01-Jan-2025' },
+  { name: 'Unifier project creation file', date: '01-Jan-2025' }
+];
 
   // For Help info dialogue
    helpInfoVisible = false;  
@@ -76,6 +92,7 @@ export class ProjectContractsComponent {
     this.currentUserEmail = this.loginService.userEmail;
     this.LoadAdvanceFilter();
     this.LoadContracts();
+    this.LoadExportColumns();
   }
 
   LoadAdvanceFilter()
@@ -96,6 +113,7 @@ export class ProjectContractsComponent {
         const projects = res.projects;
         this.allProjects = res.projects;
         this.applyFilter();
+        this.updateTreeHeight();
       } 
       else 
       {
@@ -155,9 +173,16 @@ export class ProjectContractsComponent {
   OnAdvanceSearchButtonClick()
   {
     this.advanceSearchToggle = !this.advanceSearchToggle;
+    setTimeout(() => this.updateTreeHeight(), 0);
   }
 
-    toggleComponent() {
+  updateTreeHeight(): void {
+    if (!this.projectTreeWrapper) return;
+    const newHeight = this.projectTreeWrapper ? 150 : 1000;
+    //this.projectTreeWrapper.nativeElement.style.maxHeight = `${newHeight}px`;
+  }
+
+  toggleComponent() {
     this.toggleService.toggleProjectTreeVisibility();
   }
 
@@ -331,14 +356,92 @@ export class ProjectContractsComponent {
   }
 
   onPopupItemSelected(item: string) {
-    this.isThreeDotClick = !this.isThreeDotClick;
+      this.isThreeDotClick = !this.isThreeDotClick;
 
-    if (item == 'Instructions to Use')
-    {
-      this.helpInfoVisible = true;
+      if (item === 'Save Filter') {
+        this.saveCurrentAdvanceFilter();
+      }
+      else if(item === 'Export Contracts')
+      {
+        this.handleExportContracts();
+      }
+      else if (item.startsWith('Saved Filter')) {
+        this.loadAdvanceFilter(item);
+      }
+
+      else if (item == 'Instructions to Use') {
+        this.helpInfoVisible = true;
+      }
     }
+
+  saveCurrentAdvanceFilter() {
+    const currentValues = JSON.stringify(this.advanceSelectedValues);
+
+    // Check if already saved
+    const isDuplicate = this.savedFilters.some(f =>
+      JSON.stringify(f.values) === currentValues
+    );
+
+    if (isDuplicate) {
+       alert("Same filter already saved once. Modify the filter and try again !!!");
+      return;
+    }
+
+    // Save new filter
+    this.savedFilterCount++;
+    const key = `Saved Filter ${this.savedFilterCount}`;
+    this.savedFilters.push({
+      key,
+      values: JSON.parse(currentValues)
+    });
+
+    console.log(`Saved new filter: ${key}`);
+    this.updateLoadFilterMenu();
   }
 
+  loadAdvanceFilter(key: string) {
+  const found = this.savedFilters.find(f => f.key === key);
+  if (!found) return;
+
+  this.advanceSelectedValues = JSON.parse(JSON.stringify(found.values));
+  console.log(`Loaded filter: ${key}`, this.advanceSelectedValues);
+
+  this.applyFilter();  // reapply
+}
+
+updateLoadFilterMenu() {
+  const popupItemsTemp = [
+    { icon: 'grid_on', label: 'Export Contracts' },
+    { icon: 'save', label: 'Save Filter' },
+    ...(this.savedFilters.length > 0 
+      ? [
+          {
+            icon: 'filter_list',
+            label: 'Load Filter',
+            children: this.savedFilters.map(f => ({ icon: '', label: f.key }))
+          }
+        ]
+      : []
+    ),
+    { icon: 'help', label: 'Instructions to Use' }
+  ];
+  this.popupItems = popupItemsTemp;
+}
+
+LoadExportColumns() : void
+{
+  this.projectService.getContractExportColumns().subscribe(response => this.exportColumns = response.columnNames);
+  this.projectService.getContractExportDetail().subscribe(response => this.exportData = response);
+}
+
+handleExportContracts() {
+  if (!this.checkedKeys.length) {
+    alert("No valid data available to export. Please select at least one contract.");
+    return;
+  }
+  
+  this.excelExport.save();
+}
   // For Help info
     onHelpInfoDialogClose() {
     this.helpInfoVisible = false;

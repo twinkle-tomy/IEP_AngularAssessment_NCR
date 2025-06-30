@@ -290,14 +290,14 @@
 }
 
 .tree-container {
-  // height: calc(100vh - 350px); /* leave space for taskbar/footer */
-  // overflow-y: auto;
+  overflow-y: auto;
   padding-right: 4px;
   scrollbar-width: thin; /* Firefox */
   scrollbar-color: #ccc transparent;
 }
 
 .tree-node {
+    overflow-y: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;

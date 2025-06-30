@@ -12,6 +12,7 @@ import { NcrRequest, NcrTabularItem } from '../../../Services/NCRData';
 import { NcrService } from '../../../Services/ncr.service';
 import { SeriesType } from '@progress/kendo-angular-charts';
 import { ItemToggleService } from '../../../Services/item-toggle.service';
+import { PopupItem } from '../../../Services/AdvanceFilter';
 
 @Component({
   selector: 'app-ncr',
@@ -60,15 +61,18 @@ selectedViewAs: string = 'Chart'; // default value
   isTabCloseAvail : boolean = false;
   isChartClickTabular : boolean = false;
   tabularHeader : string = '';
+  chartTabularViewType : string = '';
 
     // For CustomPopup
-  popupItems = [
+  popupItems: PopupItem[]  = [
     { icon: 'save', label: 'Save Filter' },
-    { icon: 'filter_list', label: 'Load Filter' },
     { icon: 'help', label: 'Instructions to Use' }
   ];
 
   isThreeDotClick = false;
+  savedFilters: { key: string, viewType: string, viewAs: string }[] = [];
+  savedFilterCount = 0;
+  popupStyle = 'popup-wrapper open-left'; // can change to open-left for other
 
     // For Help info dialogue
    helpInfoVisible = false;  
@@ -141,7 +145,20 @@ selectedViewAs: string = 'Chart'; // default value
     }
     else if (this.selectedViewAs === 'Chart' && this.isChartClickTabular)
     {
-       const payload1: NcrRequest = { viewType: 'Tabular', scope: this.selectedViewType };
+      if (this.chartTabularViewType == '')
+      {
+        this.chartTabularViewType = this.selectedViewType;
+      }
+      else if (this.chartTabularViewType == 'Individual')
+      {
+        this.chartTabularViewType = 'Project';
+      }
+      else if (this.chartTabularViewType == 'Project')
+      {
+        this.chartTabularViewType = 'Individual';
+      }
+
+       const payload1: NcrRequest = { viewType: 'Tabular', scope: this.chartTabularViewType };
              this.ncrService.getTabularData(payload1).subscribe({
         next: (data) => {
           this.isLoading = false;
@@ -279,11 +296,74 @@ selectedViewAs: string = 'Chart'; // default value
   onPopupItemSelected(item: string) {
     this.isThreeDotClick = !this.isThreeDotClick;
 
-    if (item == 'Instructions to Use')
-    {
-      this.helpInfoVisible = true;
-    }
+    if (item === 'Save Filter') {
+        this.saveCurrentViewFilter();
+      }
+      else if (item.startsWith('Saved Filter')) {
+        this.loadViewFilter(item);
+      }
+
+      else if (item == 'Instructions to Use') {
+        this.helpInfoVisible = true;
+      }
   }
+
+saveCurrentViewFilter() {
+  // Check for duplicate
+  const isDuplicate = this.savedFilters.some(f =>
+    f.viewType === this.selectedViewType && f.viewAs === this.selectedViewAs
+  );
+
+  if (isDuplicate) {
+    alert("Same filter already saved once !!!");
+    return;
+  }
+
+  // Save new filter
+  this.savedFilterCount++;
+  const key = `Saved Filter ${this.savedFilterCount}`;
+
+  this.savedFilters.push({
+    key,
+    viewType: this.selectedViewType,
+    viewAs: this.selectedViewAs
+  });
+
+  console.log(`Saved new filter: ${key}`);
+  this.updateLoadFilterMenu();
+}
+
+loadViewFilter(key: string) {
+  const found = this.savedFilters.find(f => f.key === key);
+  if (!found) return;
+
+  this.selectedViewType = found.viewType;
+  this.selectedViewAs = found.viewAs;
+
+  console.log(`Loaded filter: ${key}`, found);
+
+  // re-trigger data load or UI update if needed
+  this.LoadData();
+}
+
+updateLoadFilterMenu() {
+  const popupItemsTemp = [
+    { icon: 'save', label: 'Save Filter' },
+    ...(this.savedFilters.length > 0 
+      ? [
+          {
+            icon: 'filter_list',
+            label: 'Load Filter',
+            children: this.savedFilters.map(f => ({ icon: '', label: f.key }))
+          }
+        ]
+      : []
+    ),
+    { icon: 'help', label: 'Instructions to Use' }
+  ];
+
+  this.popupItems = popupItemsTemp;
+}
 
   ExpandOrCollapseView(isViewExpand : boolean)
   {

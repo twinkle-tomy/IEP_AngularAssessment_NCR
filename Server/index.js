@@ -128,6 +128,30 @@ app.post('/api/ncrTabular', (req, res) => {
   }
 });
 
+// Read All Contracts columns
+app.get('/api/allContractsColumns', (req, res) => {
+  const filePath = path.join(__dirname, 'Data', 'AllContractsColumns.json');
+  fs.readFile(filePath, 'utf8', (err, jsonData) => {
+    if (err) {
+      return res.status(0).json({ error: 'Failed to load All Contracts columns.' });
+    }
+    const parsed = JSON.parse(jsonData);
+    res.json(parsed.data);
+  });
+});
+
+// Read All Contracts Data
+app.get('/api/allContractsData', (req, res) => {
+  const filePath = path.join(__dirname, 'Data', 'AllContractsData.json');
+  fs.readFile(filePath, 'utf8', (err, jsonData) => {
+    if (err) {
+      return res.status(0).json({ error: 'Failed to read All Contracts Data.' });
+    }
+    const parsed = JSON.parse(jsonData);
+    res.json(parsed.data.Item);
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });

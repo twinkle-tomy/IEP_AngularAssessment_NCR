@@ -13,20 +13,114 @@
   padding: 6px 12px;
   cursor: pointer;
   font-size: 14px;
+  position: relative; // needed for submenu positioning
 
   &:hover {
-    background: #f1f1f1;
+    background: #C6F7E2;
   }
 
-  .material-icons {
+  // Submenu container
+  .popup-submenu {
+    display: none; // hidden by default
+    position: absolute;
+    background: white;
+    border: 1px solid #ddd;
+    min-width: 150px;
+    z-index: 1000;
+
+    .popup-subitem {
+      padding: 6px 12px;
+      cursor: pointer;
+      font-size: 12px;
+      color: grey;
+
+      &:hover {
+        background: #C6F7E2;
+      }
+    }
+  }
+
+  // Show submenu on hover
+  &:hover .popup-submenu {
+    display: block;
+  }
+}
+
+.popup-item-main {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  .parentIcon {
     margin-right: 8px;
     font-size: 15px;
     color: grey;
   }
 
   .label {
-    flex: 1;
     color: grey;
     font-size: 12px;
+  }
+
+  .expand-arrow {
+    margin-left: auto;
+    font-size: 15px;
+    color: grey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.popupSubMenuLeft {
+  left: 100%;
+  top: 0;
+}
+
+.popupSubMenuRight{
+  right: 100%;
+  top: 0;
+}
+
+.popup-separator {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 8px 0;
+}
+
+.popup-info-header {
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: grey;
+
+  .info-icon {
+    font-size: 18px;
+    margin-right: 6px;
+  }
+  .info-text {
+    font-size: 13px;
+  }
+}
+
+.popup-uploaded-info {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 12px;
+  font-size: 12px;
+  color: grey;
+  flex-wrap: wrap;  // 🔥 allow wrapping to next line
+
+  .file-name {
+    max-width: 150px;
+    flex: 1 1 auto;    // grow and shrink as needed
+    word-wrap: break-word;
+    white-space: normal; // 🔥 allow multi-line wrap
+  }
+
+  .file-date {
+    margin-left: 8px;
+    white-space: nowrap;
   }
 }

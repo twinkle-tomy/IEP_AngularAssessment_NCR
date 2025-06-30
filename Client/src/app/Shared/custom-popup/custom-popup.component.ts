@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
-import { PopupModule } from '@progress/kendo-angular-popup';
+import { Align, PopupModule } from '@progress/kendo-angular-popup';
+import { PopupItem } from '../../Services/AdvanceFilter';
 
 @Component({
   selector: 'app-custom-popup',
@@ -9,11 +10,16 @@ import { PopupModule } from '@progress/kendo-angular-popup';
   templateUrl: './custom-popup.component.html',
   styleUrl: './custom-popup.component.scss'
 })
+
 export class CustomPopupComponent {
-  @Input() items: { icon: string, label: string }[] = [];
+  
+  @Input() items: PopupItem[] = [];
   @Output() itemSelected = new EventEmitter<string>();
   @Input() popupAnchor!: HTMLElement;
   @Output() closed = new EventEmitter<void>();
+  @Input() popupAlign:Align = { horizontal: 'left', vertical: 'top' }; 
+  @Input() popupClass = 'popup-wrapper';
+  @Input() uploadedInfo: { name: string, date: string }[] = [];
 
   public show = false;
 

@@ -97,7 +97,9 @@
   [items]="popupItems"
   [popupAnchor]="threeDotIconRef"
   (itemSelected)="onPopupItemSelected($event)"
+  [popupAlign]="{ horizontal: 'right', vertical: 'top' }"
   (closed)="onPopupClosed()"
+  [popupClass]="popupStyle"
   #customPopup></app-custom-popup>
 
   <!-- Help Info Dialogue -->
