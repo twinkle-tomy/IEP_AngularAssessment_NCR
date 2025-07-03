@@ -181,7 +181,7 @@
   font-weight: 600;
   color: #444;
   margin-bottom: 4px;
-    padding-left: 3px;
+    padding-left: 8px;
 }
 
 .filter-control {
@@ -197,7 +197,7 @@
   text-overflow: ellipsis;
   font-size: 11px;
   color: grey;
-  padding-left: 3px;
+  padding-left: 8px;
 }
 
 .multiselect-wrapper {
@@ -228,6 +228,7 @@
   transform: translateY(-50%);
   font-size: 16px;
   color: #555;
+  padding-right: 8px;
 }
 
 .icon.minus {
