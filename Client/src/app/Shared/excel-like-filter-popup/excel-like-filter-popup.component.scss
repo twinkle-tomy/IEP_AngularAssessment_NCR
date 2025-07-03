@@ -1,7 +1,7 @@
 .filter-popup {
   position: absolute;
   width: 220px;
-  background: rgb(239, 241, 243);
+  background: #F8FAF9;
   border: 1px solid gray;
   border-radius: 4px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
@@ -41,12 +41,21 @@
     button {
       font-size: 12px;
       margin-right: 15px;
-      background-color: rgb(6, 131, 177);
-      border: 1px solid rgb(54, 161, 233);
+      background-color: #147D64;
+      border: 1px solid #147D64;
       border-radius: 3px;
       color: white;
       height: 20px;
       width: 50px;
     }
   }
+}
+
+.filterCheckBox
+{
+  width: 14px;
+  height: 14px;
+  accent-color: #147D64;
+  cursor: pointer;
+  border-radius: 5px;
 }

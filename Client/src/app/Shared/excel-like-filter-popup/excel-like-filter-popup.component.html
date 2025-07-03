@@ -4,7 +4,7 @@
 
   <div class="checkbox-list">
     <label *ngFor="let item of filteredDistinctValues">
-      <input type="checkbox" [(ngModel)]="item.selected" (change)="onCheckboxChange()" />
+      <input type="checkbox" class="filterCheckBox" [(ngModel)]="item.selected" (change)="onCheckboxChange()" />
       <span class="item-text">{{ item.value }}</span>
     </label>
   </div>

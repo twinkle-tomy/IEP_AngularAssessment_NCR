@@ -1,3 +1,10 @@
+.tabContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+}
+
 .tabHeaderDiv
 {
   height: 35px; 
@@ -9,7 +16,6 @@
   border-top-right-radius: 3px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-  width: 100%;
   display: flex;
   justify-content: space-between;
 }
@@ -36,29 +42,20 @@
   }
 }
 
-.tabDisplayDiv
-{
-  flex-grow: 1;
-  overflow: auto;
-  border: 1px solid lightgray;
-  border-top: none;
-  border-radius: 0 0 1px 1px;
-}
-
 ::ng-deep kendo-grid .k-grid-header th.k-header {
   background-color: #f5f5f5;; /* Gray background for headers */
   border: 1px solid rgb(229, 236, 245);
   font-weight: 500;
   color: black;
-  font-size: 11px; 
+  font-size: 11px;  
 }
 
 ::ng-deep .k-grid-header th.k-header {
-  height: 30px;
-  line-height: 10px;
+   //height: 15px;
+  white-space: wrap;
+  word-break: normal;
   vertical-align: middle;
-  white-space: normal;
-  word-break: break-word;
+  line-height: normal;
 }
 
 ::ng-deep kendo-grid .k-grid-table tr,
@@ -103,6 +100,8 @@
 
 ::ng-deep .k-grid .k-pager {
   justify-content: flex-end !important;
+  height: 21%;
+  padding-bottom: 21px;
 }
 
 ::ng-deep .k-button-flat {
@@ -113,14 +112,14 @@
 }
 
 ::ng-deep .k-pager .k-button {
-  background-color: rgb(228, 242, 247) !important;
+  background-color: #e4fcf2 !important;
   border-color: gray !important;
 }
 
 ::ng-deep .k-pager .k-button.k-selected {
-  border-color: rgb(240, 239, 239) !important;
-  background-color: whitesmoke;
-  color: black !important;
+  border-color: gray !important;
+  background-color: #02A783 !important;
+  color: white !important;
 }
 
 ::ng-deep .k-pager {

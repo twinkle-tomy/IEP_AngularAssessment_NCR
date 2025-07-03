@@ -39,8 +39,7 @@ export class CustomTabularComponent {
   prevNext:boolean = true;
   type: PagerType = "numeric";
   pagedRows: GridDataResult = { data: [], total: 0 };
-  tabMaximumHeight : number = 200;
-  tabMaximumWidth : number = 855;
+  tabMaximumWidth = '68vw';
   searchText: string = '';
   popupColumn: string = '';
   isContractTreeVisible : boolean = false;
@@ -52,22 +51,19 @@ export class CustomTabularComponent {
 
 
   constructor(private toggleService: ItemToggleService) {
-
   }
 
   ngOnInit() 
   {
       this.toggleService.projectTreeVisibility$.subscribe(value => {
       this.isContractTreeVisible = value;
-      if (this.isContractTreeVisible) {
-
-          this.tabMaximumHeight = 200;
-          this.tabMaximumWidth = 855;
+      if (this.isContractTreeVisible) 
+        {
+          this.tabMaximumWidth = '68vw';
       }
       else
       {
-          this.tabMaximumHeight = 250;
-          this.tabMaximumWidth = 1170;
+          this.tabMaximumWidth = '92vw';
       }
     });
   }
@@ -103,12 +99,10 @@ export class CustomTabularComponent {
 
   private SetMaximumHeightAndWidth(): void {
     if (this.isViewExpanded) {
-      this.tabMaximumHeight = 250;
-      this.tabMaximumWidth = 1170;
+      this.tabMaximumWidth = '92vw';
     }
     else {
-      this.tabMaximumHeight = 200;
-      this.tabMaximumWidth = 855;
+      this.tabMaximumWidth = '68vw';
     }
   }
 

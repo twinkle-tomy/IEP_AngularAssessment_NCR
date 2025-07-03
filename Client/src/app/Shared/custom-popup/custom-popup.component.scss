@@ -112,13 +112,13 @@
   padding: 4px 12px;
   font-size: 12px;
   color: grey;
-  flex-wrap: wrap;  // 🔥 allow wrapping to next line
+  flex-wrap: wrap;  
 
   .file-name {
     max-width: 150px;
-    flex: 1 1 auto;    // grow and shrink as needed
+    flex: 1 1 auto;    
     word-wrap: break-word;
-    white-space: normal; // 🔥 allow multi-line wrap
+    white-space: normal; 
   }
 
   .file-date {

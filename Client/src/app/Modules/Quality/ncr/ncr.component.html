@@ -63,22 +63,21 @@
       </div>
     
       <div *ngIf="!isLoading && !isNoDataFound" class="chartTabDiv">
-        <app-custom-tabular style="width: 100%;height: 100%;" *ngIf="selectedViewAs === 'Tabular' && !isChartClickTabular"
+        <app-custom-tabular *ngIf="selectedViewAs === 'Tabular' && !isChartClickTabular"
          [columns]="tabularColumns" [rows]="tabularData" [tabCount]="tabularLength"
           [isViewExpanded]="isFullGridView"
           [tabularTitle]="tabularHeader"
           (ResizeScreen)="ExpandOrCollapseView($event)">
         </app-custom-tabular>
-        <app-custom-chart style="width: 100%;"
+        <app-custom-chart
          *ngIf="selectedViewAs === 'Chart' && !isChartClickTabular" [categories]="chartCategories" [seriesData]="chartValues"
           [seriesType]="chartSeriesType" [seriesColor]="chartSeriesColor" [isViewExpanded]="isFullChartView"
           [yAxisTitleText]="chartYAxisTitle"
           [chartTitle]="chartTitle"
           (ResizeScreen)="ExpandOrCollapseView($event)"
-          (ShowHideTabular)="ShowHideChartInTabular($event)"
-          [style.max-height.px]="chartMaximumHeight">
+          (ShowHideTabular)="ShowHideChartInTabular($event)">
         </app-custom-chart>
-        <app-custom-tabular style="width: 100%;" *ngIf="selectedViewAs === 'Chart' && isChartClickTabular"
+        <app-custom-tabular *ngIf="selectedViewAs === 'Chart' && isChartClickTabular"
          [columns]="tabularColumns" [rows]="tabularData" [tabCount]="tabularLength"
           [isViewExpanded]="isFullGridView"
           [isCloseAvail]="isTabCloseAvail"

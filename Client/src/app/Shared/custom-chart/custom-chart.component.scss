@@ -53,7 +53,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-   border-right: 1px solid lightgray;
+    border-right: 1px solid lightgray;
 }
 
 .kendoChartDiv {
@@ -66,11 +66,11 @@ border-bottom: 1px solid lightgray;
 }
 
 .kendoChartDiv kendo-chart {
-    flex: 1; /* chart fills remaining height */
+    flex: 1 1 auto;
 }
 
 .kendoPagerDiv {
-   height: 35px;
+  height: 15%;
   width: 100%;
   display: flex;
   padding-right: 8px;
@@ -91,14 +91,14 @@ border-bottom: 1px solid lightgray;
 }
 
 ::ng-deep .k-pager .k-button {
-  background-color: rgb(228, 242, 247) !important;
+  background-color: #e4fcf2 !important;
   border-color: gray !important;
 }
 
 ::ng-deep .k-pager .k-button.k-selected {
-  border-color: rgb(240, 239, 239) !important;
-  background-color: whitesmoke;
-  color: black !important;
+  border-color: gray !important;
+  background-color: #02A783 !important;
+  color: white !important;
 }
 
 ::ng-deep .k-pager {

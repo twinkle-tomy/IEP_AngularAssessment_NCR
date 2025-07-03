@@ -3,7 +3,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  color: black;    
+  color: black; 
 }
 
 .truncate-text {
@@ -210,7 +210,6 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  position: relative;
   height: 100%;
 }
  
@@ -219,15 +218,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
 }
 
 .chartTabDiv
 {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  flex-grow: 1;
   width: 100%;
   margin-top: 5px;
 }

@@ -10,7 +10,6 @@
 
 .content {
   display: flex;
-  flex: 1;
   height: calc(100vh - 8vh); // take remaining height
   overflow: hidden;
 }
@@ -20,12 +19,16 @@
 }
 
 .firstColumn {
+  display: flex;
+  flex-direction: column;
   width: 50px;
   border-bottom: 2px solid #E1E7E5;
   border-right: 2px solid #E1E7E5;
 }
 
 .secondColumn {
+  display: flex;
+  flex-direction: column;
   width: 300px;
   border-bottom: 2px solid #E1E7E5;
   border-right: 2px solid #E1E7E5;

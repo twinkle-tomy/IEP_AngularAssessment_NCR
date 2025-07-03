@@ -1,3 +1,5 @@
+
+<div class="tabContainer">
 <div class="tabHeaderDiv">
     <div class="filter-header-left-text">
         <span style="font-weight: 700;font-size: 13;">{{tabularTitle}}</span>
@@ -25,13 +27,11 @@
 </div>
 </div>
 
-<div class="tabDisplayDiv">
     <kendo-grid #grid [data]="pagedRows"
     [pageable]="{ info: false }"
-    [pageSize]="pageSize" [skip]="skip "
-    (pageChange)="onPageChange($event)"
-    [style.max-height.px]="tabMaximumHeight"
-    [style.max-width.px]="tabMaximumWidth">
+    [pageSize]="pageSize" [skip]="skip"
+     [style.width]="tabMaximumWidth"
+    (pageChange)="onPageChange($event)" [scrollable]="'scrollable'" [height]="400">
         <kendo-grid-column *ngFor="let col of columns"
          [field]="col" [title]="col" [width]="150">
             <ng-template kendoGridHeaderTemplate>
@@ -46,6 +46,7 @@
   </kendo-grid-column>
     </kendo-grid>
 </div>
+
 
 <!-- global excel like filter popup -->
 <app-excel-like-filter-popup 
